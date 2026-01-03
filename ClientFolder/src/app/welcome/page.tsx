@@ -7,35 +7,91 @@ const WelcomePage = () => {
   const router = useRouter();
 
   const handleGetStarted = () => {
-    router.push('/login'); // Or use '/signup' depending on your flow
+    router.push('/login');
   };
 
   return (
-    <div className="bg-[#EFE3C2] min-h-screen flex flex-col justify-between">
-      {/* NavBar */}
+    <div className="bg-amber-50 min-h-screen flex flex-col justify-between">
+
       <NavBar />
-      
-      {/* Main Section */}
-      <section className="flex flex-col items-center justify-center py-16 px-6 text-center md:px-16">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-[#123524] mb-6">
-          Welcome to Our Recipe Hub! 🍴
-        </h1>
-        <p className="text-lg md:text-xl text-[#3E7B27] max-w-2xl mx-auto mb-8">
-          Start your culinary journey with us! Sign up to explore thousands of recipes, share your favorites, and much more.
-        </p>
-        <button
-          onClick={handleGetStarted}
-          className="px-8 py-4 bg-[#3E7B27] text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-[#123524] transition duration-300"
-        >
-          Get Started
-        </button>
+
+      {/* Hero Section */}
+      <section className="flex-1 flex flex-col items-center justify-center px-6 py-24 text-center">
+        <div className="max-w-3xl mx-auto space-y-8">
+
+          {/* Main Heading */}
+          <h1 className="text-5xl md:text-6xl font-bold text-slate-800 leading-tight">
+            Welcome to
+            <span className="block text-orange-600 mt-2">Recipe Hub</span>
+          </h1>
+
+          {/* Description */}
+          <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            Discover delicious recipes from around the world. Save your favorites,
+            share your own creations, and explore endless culinary possibilities.
+          </p>
+
+          {/* CTA Button */}
+          <div className="pt-6">
+            <button
+              onClick={handleGetStarted}
+              className="px-12 py-4 bg-orange-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-orange-700 hover:shadow-xl transition-all duration-300 cursor-pointer"
+            >
+              Get Started
+            </button>
+          </div>
+
+          {/* Features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16">
+            <div className="space-y-3">
+              <div className="text-4xl">🍳</div>
+              <h3 className="text-lg font-semibold text-slate-800">
+                Thousands of Recipes
+              </h3>
+              <p className="text-sm text-slate-600">
+                Explore recipes from every cuisine
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <div className="text-4xl">❤️</div>
+              <h3 className="text-lg font-semibold text-slate-800">
+                Save Favorites
+              </h3>
+              <p className="text-sm text-slate-600">
+                Keep your best finds in one place
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <div className="text-4xl">👨‍🍳</div>
+              <h3 className="text-lg font-semibold text-slate-800">
+                Share Your Recipes
+              </h3>
+              <p className="text-sm text-slate-600">
+                Join our community of food lovers
+              </p>
+            </div>
+          </div>
+
+        </div>
       </section>
-      
-      {/* Footer Section */}
-      <footer className="py-4 bg-[#3E7B27] text-center text-white">
+
+      {/* Footer */}
+      <footer className="py-6 bg-slate-800 text-center text-slate-200">
         <p>&copy; 2025 Recipe Hub. All Rights Reserved.</p>
       </footer>
     </div>
+  );
+};
+
+export default WelcomePage;
+
+{/* Footer */ }
+<footer className="py-6 bg-slate-800 text-center text-slate-200">
+  <p>&copy; 2025 Recipe Hub. All Rights Reserved.</p>
+</footer>
+    </div >
   );
 };
 

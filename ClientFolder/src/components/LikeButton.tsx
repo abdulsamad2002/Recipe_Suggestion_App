@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import { useAuth } from "../authcontext/Authcontext"
-import { HeartIcon, HeartIcon as HeartOutlineIcon } from '@heroicons/react/24/outline'
+import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid'
+import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/24/outline'
 
 interface post {
   RecipeId: number;
@@ -94,19 +95,21 @@ function LikeButton({ RecipeId }: { RecipeId: number }) {
   }
 
   return (
-    <div>
-      <button
-        className={`flex items-center gap-2 ${liked && auth.user ? "text-red-500" : "text-black"}`}
-        onClick={likehandler}
-      >
-        {liked && auth.user ? (
-          <HeartIcon className="h-5 w-5 text-red-500" />
-        ) : (
-          <HeartOutlineIcon className="h-5 w-5 text-black" />
-        )}
-        <span>{`${like}`}</span>
-      </button>
-    </div>
+    <button
+      className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+        liked && auth.user 
+          ? "bg-red-50 text-red-600 hover:bg-red-100" 
+          : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+      }`}
+      onClick={likehandler}
+    >
+      {liked && auth.user ? (
+        <HeartSolidIcon className="h-5 w-5 text-red-600" />
+      ) : (
+        <HeartOutlineIcon className="h-5 w-5 text-slate-600" />
+      )}
+      <span className="text-sm font-semibold">{like}</span>
+    </button>
   )
 }
 

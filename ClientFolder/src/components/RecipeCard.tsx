@@ -9,6 +9,7 @@ interface recipeprops {
   RecipeInstruction: string;
   RecipeDescription: string;
 }
+
 export default function RecipeCard({
     RecipeId,
     RecipeName,
@@ -22,47 +23,50 @@ export default function RecipeCard({
     };
   
     return (
-      <div className="flex flex-col justify-between items-center gap-4 p-4 rounded-md bg-[#f1e3ba] text-[#123524] border-2 w-full max-w-sm mx-auto">
-        <div className="w-full">
-          <h1
-            onClick={navigationhandler}
-            className="text-lg text-center font-extrabold cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap"
-            title={RecipeName} 
-          >
-            {RecipeName}
-          </h1>
-        </div>
-        <div>
+      <div className="flex flex-col bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-slate-200 w-full max-w-sm">
+        
+        {/* Image Section */}
+        <div className="relative w-full h-48 overflow-hidden cursor-pointer group" onClick={navigationhandler}>
           <Image
-            className="rounded-md cursor-pointer"
-            onClick={navigationhandler}
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
             src={ImageUrl || "https://img.spoonacular.com/recipes/665188-312x231.jpg"}
-            alt="Recipe Image"
-            width={300}
-            height={200}
-            layout="responsive"
+            alt={RecipeName}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
-  
-        <div>
-          <p className="text-sm sm:text-base">
+
+        {/* Content Section */}
+        <div className="flex flex-col gap-3 p-5">
+          
+          {/* Title */}
+          <h2
+            onClick={navigationhandler}
+            className="text-xl font-bold text-slate-800 cursor-pointer hover:text-orange-600 transition-colors line-clamp-2 leading-tight"
+            title={RecipeName}
+          >
+            {RecipeName}
+          </h2>
+
+          {/* Description */}
+          <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
             {RecipeDescription?.length > 120
               ? `${RecipeDescription.substring(0, 120)}...`
               : RecipeDescription}
           </p>
-        </div>
-  
-        <button
-          onClick={navigationhandler}
-          className="text-[#07904e] font-semibold mt-2 cursor-pointer"
-        >
-          Know More
-        </button>
-  
-        <div>
-          <LikeButton RecipeId={RecipeId} />
+
+          {/* Actions */}
+          <div className="flex items-center justify-between mt-2 pt-3 border-t border-slate-100">
+            <button
+              onClick={navigationhandler}
+              className="text-orange-600 font-semibold text-sm hover:text-orange-700 transition-colors cursor-pointer"
+            >
+              View Recipe →
+            </button>
+            
+            <LikeButton RecipeId={RecipeId} />
+          </div>
         </div>
       </div>
     );
   }
-  

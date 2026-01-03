@@ -48,44 +48,73 @@ const Page = () => {
     }
 
     return (
-        <div className="min-h-screen bg-[#EFE3C2]">
+        <div className="min-h-screen bg-amber-50">
             <NavBar />
-            <div className="flex flex-col items-center justify-center p-8">
-                <form onSubmit={loginHandler} className="bg-[#f1e3ba] p-8 rounded-lg shadow-lg w-full max-w-md flex flex-col gap-4">
-                    <h1 className="text-2xl font-bold text-center text-[#123524]">Login</h1>
-
-                    <div className="flex flex-col gap-2">
-                        <label className="text-[#123524]">Email / Username</label>
-                        <input
-                            className="p-2 rounded border focus:outline-none focus:ring-2 focus:ring-[#3E7B27]"
-                            placeholder="Enter your email"
-                            id="email"
-                            name="email"
-                            value={information.email}
-                            onChange={handleInformation}
-                        />
+            <div className="flex flex-col items-center justify-center px-6 py-12">
+                <div className="w-full max-w-md">
+                    <div className="text-center mb-8">
+                        <h1 className="text-3xl font-bold text-slate-800 mb-2">Welcome Back</h1>
+                        <p className="text-slate-600">Log in to continue your culinary journey</p>
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                        <label className="text-[#123524]">Password</label>
-                        <input
-                            type="password"
-                            className="p-2 rounded border focus:outline-none focus:ring-2 focus:ring-[#3E7B27]"
-                            placeholder="Enter your password"
-                            id="password"
-                            name="password"
-                            value={information.password}
-                            onChange={handleInformation}
-                        />
+                    <div className="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                        <div className="space-y-5">
+                            {/* Email/Username */}
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                                    Email / Username
+                                </label>
+                                <input
+                                    className="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                                    placeholder="you@example.com"
+                                    id="email"
+                                    name="email"
+                                    type="text"
+                                    value={information.email}
+                                    onChange={handleInformation}
+                                />
+                            </div>
+
+                            {/* Password */}
+                            <div>
+                                <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-2">
+                                    Password
+                                </label>
+                                <input
+                                    type="password"
+                                    className="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                                    placeholder="••••••••"
+                                    id="password"
+                                    name="password"
+                                    value={information.password}
+                                    onChange={handleInformation}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                            loginHandler(e as any);
+                                        }
+                                    }}
+                                />
+                            </div>
+
+                            {/* Submit Button */}
+                            <button
+                                type="button"
+                                disabled={loading}
+                                onClick={loginHandler as any}
+                                className="w-full py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors cursor-pointer shadow-sm disabled:opacity-50 disabled:cursor-not-allowed mt-6"
+                            >
+                                {loading ? 'Logging in...' : 'Log In'}
+                            </button>
+                        </div>
                     </div>
 
-                    <button
-                        type="submit"
-                        className="bg-[#3E7B27] text-white p-2 rounded hover:bg-[#2e5d1c] transition-all mt-4"
-                    >
-                        {loading ? 'Loading...' : 'Submit'}
-                    </button>
-                </form>
+                    <p className="text-center text-slate-600 mt-6">
+                        Don't have an account?{' '}
+                        <a href="/signup" className="text-orange-600 font-semibold hover:text-orange-700 cursor-pointer">
+                            Sign up
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     );
