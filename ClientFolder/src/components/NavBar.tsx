@@ -20,50 +20,25 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="w-full bg-white shadow-sm border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-        
-        {/* Logo/Brand */}
-        <Link href="/" className="text-2xl font-bold text-orange-600 hover:text-orange-700 cursor-pointer transition-colors">
-          Recipe Hub
-        </Link>
-
-        {/* Navigation Links */}
-        <div className="flex items-center gap-8">
-          <Link 
-            href="/recipes" 
-            className="text-slate-700 font-medium hover:text-orange-600 cursor-pointer transition-colors"
-          >
-            Recipes
-          </Link>
-
-          {/* Auth Links */}
-          {!auth.user ? (
-            <>
-              <Link 
-                href="/login" 
-                className="text-slate-700 font-medium hover:text-orange-600 cursor-pointer transition-colors"
-              >
-                Login
-              </Link>
-              <Link 
-                href="/signup" 
-                className="px-6 py-2 bg-orange-600 text-white font-semibold rounded-full hover:bg-orange-700 cursor-pointer transition-colors shadow-sm"
-              >
-                Sign Up
-              </Link>
-            </>
-          ) : (
-            <button
-              onClick={loggouthandler}
-              className="px-6 py-2 bg-slate-700 text-white font-semibold rounded-full hover:bg-slate-800 cursor-pointer transition-colors shadow-sm"
-            >
-              Logout
-            </button>
-          )}
-        </div>
+    <div className="w-full h-20 bg-[#3E7B27] flex justify-between items-center px-4 sm:px-6">
+      
+      <div className="flex gap-6">
+        <Link href="/" className="text-white font-semibold hover:underline">Home</Link>
+        <Link href="/recipes" className="text-white font-semibold hover:underline">Recipes</Link>
       </div>
-    </nav>
+
+      
+      <div className="flex gap-6">
+        {!auth.user ? (
+          <>
+            <Link href="/login" className="text-white font-semibold hover:underline">Login</Link>
+            <Link href="/signup" className="text-white font-semibold hover:underline">Signup</Link>
+          </>
+        ) : (
+          <Link href="/" onClick={loggouthandler} className="text-white font-semibold hover:underline">Logout</Link>
+        )}
+      </div>
+    </div>
   )
 }
 

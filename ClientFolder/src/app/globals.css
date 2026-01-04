@@ -3,27 +3,3 @@
 
 
 
-/* Custom Scrollbar Styles */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #ea580c #f59e0b20;
-}
-
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  background: #f59e0b20;
-  border-radius: 4px;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: #ea580c;
-  border-radius: 4px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: #c2410c;
-}
