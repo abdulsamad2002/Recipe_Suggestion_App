@@ -34,10 +34,12 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="py-6 w-1/2 sm:w-xl gap-2 flex justify-around flex-col">
-      <div className="flex justify-around flex-row items-center border-2 rounded-md">
+    <div className="py-8 w-full max-w-2xl mx-auto px-4 flex flex-col gap-6">
+      
+      {/* Search Input */}
+      <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
         <input
-          className="border-0 w-11/12 h-10 rounded-md rounded-r-none p-2 text-xs sm:text-sm"
+          className="flex-1 h-12 px-4 rounded-lg border-2 border-slate-200 focus:border-orange-500 focus:outline-none text-slate-700 placeholder-slate-400 transition-colors"
           type="text"
           id="ingredient"
           placeholder="What's in your fridge?"
@@ -46,32 +48,47 @@ export default function SearchBar() {
           onKeyDown={handlekeydown}
         />
         <button
-          className="bg-[#3E7B27] h-10 rounded-l-none rounded-sm text-sm leading-none cursor-pointer"
+          className="h-12 px-6 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors cursor-pointer shadow-sm"
           onClick={(event) => putinbasket(event, auth.inputval)}
         >
           Add to basket
         </button>
       </div>
-      <div className="flex gap-2 flex-row overflow-x-auto max-w-full py-2">
-        {auth.cbingredients.map((ingredient, key) => (
-          <label key={key} className="p-1 border-2 rounded-md whitespace-nowrap">
-            <input
-              type="checkbox"
-              className="w-4 m-1"
-              checked={auth.cbingredients.includes(ingredient)}
-              onChange={() => handlecheckbox(ingredient)}
-            />
-            {ingredient}
-          </label>
-        ))}
-      </div>
+
+      {/* Ingredients Basket */}
+      {auth.cbingredients.length > 0 && (
+        <div className="flex gap-2 flex-wrap py-2">
+          {auth.cbingredients.map((ingredient, key) => (
+            <label 
+              key={key} 
+              className="px-4 py-2 bg-white border-2 border-slate-200 rounded-full whitespace-nowrap cursor-pointer hover:border-orange-500 transition-colors flex items-center gap-2"
+            >
+              <input
+                type="checkbox"
+                className="w-4 h-4 cursor-pointer accent-orange-600"
+                checked={auth.cbingredients.includes(ingredient)}
+                onChange={() => handlecheckbox(ingredient)}
+              />
+              <span className="text-slate-700 font-medium">{ingredient}</span>
+            </label>
+          ))}
+        </div>
+      )}
+
+      {/* Action Buttons */}
       <div className="flex justify-center gap-4">
-        <button onClick={handleRecipe} className="bg-[#3E7B27] rounded-md w-32 h-10 border-2 cursor-pointer">
+        <button 
+          onClick={handleRecipe} 
+          className="px-8 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors cursor-pointer shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={auth.cbingredients.length === 0}
+        >
           Show Recipes
         </button>
         <button
           onClick={handleRecipe}
-          className="bg-gray-400 rounded-md w-10 h-10 border-2 flex justify-center items-center text-2xl cursor-pointer"
+          className="w-12 h-12 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition-colors flex justify-center items-center text-2xl cursor-pointer shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={auth.cbingredients.length === 0}
+          title="Refresh recipes"
         >
           <MdOutlineRefresh />
         </button>
